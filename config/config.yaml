@@ -1,0 +1,77 @@
+project:
+  name: "crime-hotspot-prediction"
+  version: "1.0.0"
+  description: "Crime Hotspot Prediction and Visualization for India"
+
+data:
+  raw_data_path: "data/raw/"
+  processed_data_path: "data/processed/"
+  sample_data_path: "data/sample_data/"
+  
+models:
+  save_path: "models/saved_models/"
+  classification:
+    random_forest:
+      n_estimators: 100
+      max_depth: 10
+      random_state: 42
+    xgboost:
+      n_estimators: 100
+      max_depth: 6
+      learning_rate: 0.1
+      random_state: 42
+  
+  clustering:
+    kmeans:
+      n_clusters: 8
+      random_state: 42
+    dbscan:
+      eps: 0.5
+      min_samples: 5
+      
+  time_series:
+    arima:
+      order: [1, 1, 1]
+    lstm:
+      epochs: 50
+      batch_size: 32
+      units: 50
+
+visualization:
+  plot_style: "whitegrid"
+  color_palette: "viridis"
+  figure_size: [12, 8]
+  dpi: 300
+
+streamlit:
+  title: "Crime Hotspot Prediction Dashboard"
+  layout: "wide"
+  sidebar_state: "expanded"
+  
+  pages:
+    - name: "Overview"
+      icon: "🏠"
+    - name: "Data Analysis"
+      icon: "📊"
+    - name: "Hotspot Detection"
+      icon: "🗺️"
+    - name: "Predictions"
+      icon: "🔮"
+    - name: "Forecasting"
+      icon: "📈"
+
+evaluation:
+  classification_metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1_score"
+  
+  clustering_metrics:
+    - "silhouette_score"
+    - "calinski_harabasz_score"
+    
+  forecasting_metrics:
+    - "rmse"
+    - "mae"
+    - "mape"
